@@ -1,5 +1,9 @@
 #InternshipDB [Laravel]
 
+##Disclamer
+
+ This project is based on the Laravel.
+
 ##System setup recommendations
 
   * For the development you are recommended to use [Laravel Homestead](https://github.com/laravel/homestead).
