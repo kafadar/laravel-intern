@@ -98,3 +98,14 @@ Here the magic happens. To initialise the virtual_machine just run the following
 vagrant up
 ```
 It will take some time, but after you can able to access your machine with `vagrant ssh` command. Your web project is now accessible by the following address `internship.app:8000` or `127.0.0.1` (if the `hosts` was not changed). 
+>To make Laravel able to access MySQL you can create `.env.local.php` file with following contents:
+>```php
+>return [
+>	'DB_HOST' => 'localhost',
+>	'DB_NAME' => {database_name},
+>	'DB_USERNAME' => 'homestead',
+>	'DB_PASSWORD' => 'secret'];
+>```
+>Or you can set up database connections in `laravel-intern/app/config/database.php` file.
+
+To initialise the laravel-intern project just run `composer install` command in the root folder on your virtual_machine.
