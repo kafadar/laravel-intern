@@ -109,3 +109,7 @@ It will take some time, but after you can able to access your machine with `vagr
 >Or you can set up database connections in `laravel-intern/app/config/database.php` file.
 
 To initialise the laravel-intern project just run `composer install` command in the root folder on your virtual_machine.
+
+On you host access the `internship-app:8000`. If everything went fine you will see the following screen:
+
+![You have arrived](https://pbs.twimg.com/media/BLYFfmLCAAEHcZL.png)
