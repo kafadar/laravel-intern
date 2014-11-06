@@ -19,7 +19,7 @@ For the development you are recommended to use [Laravel Homestead](https://githu
 
 Before using Homestead you must install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org). 
 
-##Enviroment setup [Homestead]
+##Environment setup [Homestead]
 First of all, the Homestead-box must be added to Vagrant. Open your terminal (Windows: [GitBash](http://git-scm.com/download)) and type in:
 ```
 vagrant box add laravel/homestead
@@ -36,13 +36,20 @@ git clone https://github.com/laravel/homestead.git
 ```
 
 Before you proceed further, you must order the structure of folders.
-```xml
+```
 code/
  -----projects/
 
  -----homestead/
 ```
+From this moment you will need ssh-keys.
+>If not, generate them:
+>```ruby
+>ssh-keygen -t rsa -C "your@email.com"
+>```
+
 In the cloned folder `homestead` you must configure the `Homestead.yaml` file.
+
 ```
 
 ---
@@ -60,10 +67,15 @@ folders:
     to: /home/vagrant/code/project              --> path to sync_folder on virtual_machine
 
 sites:                                      
-  - map: homestead.app                                     --> address for accessing from host_machine
+  - map: internship.app                                     --> address for accessing from host_machine
     to: /home/vagrant/code/projects/laravel-intern/public  --> path to the entry point on virtual_machine
     
 ```
+Make some adjustments in the `hosts` file(`C:\Windows\System32\drivers\etc\hosts`).
+```
+127.0.0.1 internship.app
+```
+
 
 >If you have added the Homestead-box locally you must open the `homestead/scripts/homestead.rb`file and change the name of box >to be initialised.
 >```ruby
@@ -75,3 +87,14 @@ sites:
 >```
 >vagrant box list
 >```
+
+You are ready to go. But first let's clone **this repository** to the `projects` folder. In `projects`folder run this command:
+```
+git clone https://github.com/kafadar/laravel-intern.git
+```
+
+Here the magic happens. To initialise the virtual_machine just run the following command in the `homestead`folder:
+```
+vagrant up
+```
+It will take some time, but after you can able to access your machine with `vagrant ssh` command. Your web project is now accessible by the following address `internship.app:8000` or `127.0.0.1` (if the `hosts` was not changed). 
