@@ -7,7 +7,7 @@
 ##Рекомендация
 
 For the development you are recommended to use [Laravel Homestead](https://github.com/laravel/homestead). 
->**Homestead** это Vagrant-бокс образ виртуальной машины) специально настроенный для разработки на Laravel. 
+>**Homestead** это Vagrant-бокс образ виртуальной машины специально настроенный для разработки на Laravel. 
 >
 >Homestead включает в себя:
 >  * Ubuntu 14.04 LTS
@@ -25,7 +25,7 @@ For the development you are recommended to use [Laravel Homestead](https://githu
 vagrant box add laravel/homestead
 ```
 Эта комманда скачивать готовый бокс с облачного хранилища [VagrantCloud](https://vagrantcloud.com/).
-Но если вы уже локально располагаете готовым боксом выполните данную комманду, указав новое название и нынешнее расположение б:
+Но если вы уже локально располагаете заранее загруженным Homestead-боксом выполните данную комманду, указав новое название и нынешнее расположение загруженного бокса:
 ```
 vagrant box add {init_name} {path/file_name.box} 
 ```
@@ -35,20 +35,20 @@ vagrant box add {init_name} {path/file_name.box}
 git clone https://github.com/laravel/homestead.git
 ```
 
-Before you proceed further, you must order the structure of folders.
+Перед тем как продолжить, вы должны определиться со структурой проекта.
 ```
 code/
  -----projects/
 
  -----homestead/
 ```
-From this moment you will need ssh-keys.
->If not, generate them:
+Вам также понадобятся ssh-ключи.
+>Если у вас их нет можете их сгенерировать:
 >```ruby
 >ssh-keygen -t rsa -C "your@email.com"
 >```
 
-In the cloned folder `homestead` you must configure the `Homestead.yaml` file.
+В скопированной папке `homestead` необходимо редактировать файл `Homestead.yaml`.
 
 ```
 
@@ -57,59 +57,47 @@ ip: "192.168.10.10"
 memory: 2048        
 cpus: 1             
 
-authorize: /Users/{user_name}/.ssh/id_rsa.pub   --> path to the public ssh_key
+authorize: /Users/{user_name}/.ssh/id_rsa.pub   --> путь к публичному ssh_key
 
 keys:
-  - /Users/{user_name}/.ssh/id_rsa              --> path to private ssh_key
+  - /Users/{user_name}/.ssh/id_rsa              --> путь к приватному ssh_key
 
 folders:                        
-  - map: {work_path}/code/projects              --> folder on your host_machine (for synchronization)        
-    to: /home/vagrant/code/project              --> path to sync_folder on virtual_machine
+  - map: {work_path}/code/projects              --> путь к папке с проктом на гостевой машине (для синхронизации)        
+    to: /home/vagrant/code/project              --> путь к папке на виртиальной машине
 
 sites:                                      
   - map: internship.app                                     --> address for accessing from host_machine
     to: /home/vagrant/code/projects/laravel-intern/public  --> path to the entry point on virtual_machine
     
 ```
-Make some adjustments in the `hosts` file(`C:\Windows\System32\drivers\etc\hosts`).
+Внесите некоторые изменения в `hosts` file(`C:\Windows\System32\drivers\etc\hosts`).
 ```
 127.0.0.1 internship.app
 ```
 
 
->If you have added the Homestead-box locally you must open the `homestead/scripts/homestead.rb`file and change the name of box to be initialised.
+>Если вы добавили Homestead-бокс локально, то вам следует изменить название используемого бокса в файле `homestead/scripts/homestead.rb`.
 >```ruby
 >    # Configure The Box
->    config.vm.box = "laravel/homestead"    <---- change this 
+>    config.vm.box = "laravel/homestead"    <---- укажите имя бокса 
 >    config.vm.hostname = "homestead"
 >```
->To recall the name of box just run the following command:
+>Этой коммандой можно вывести весь список доступных Vagrant-боксов:
 >```
 >vagrant box list
 >```
 
-You are ready to go. But first let's clone **this repository** to the `projects` folder. In `projects`folder run this command:
+Вы уже готовы клонировать этот проект в папку `projects`:
 ```
 git clone https://github.com/kafadar/laravel-intern.git
 ```
 
-Here the magic happens. To initialise the virtual_machine just run the following command in the `homestead`folder:
+Теперь осталось лишь инициализировать виртуальную машину. В папке `homestead` выполните данную комманду:
 ```
 vagrant up
 ```
-It will take some time, but after you can able to access your machine with `vagrant ssh` command. 
->To make Laravel able to access MySQL you can create `.env.local.php` file in the root of project with following contents:
->```php
->return [
->	'DB_HOST' => 'localhost',
->	'DB_NAME' => {database_name},
->	'DB_USERNAME' => 'homestead',
->	'DB_PASSWORD' => 'secret'];
->```
->Or you can set up database connections in `laravel-intern/app/config/database.php` file.
+Спустя некоторое время, вы можете получить доступ к созданной виртуальной машине через комманду `vagrant ssh`.
 
-To initialise the laravel-intern project just run `composer install` command in the root folder on your virtual_machine. Your web project is now accessible by the following address `internship.app:8000` or `127.0.0.1` (if the `hosts` was not changed). 
+>Or you can set up database connections in `laravel-intern/app/config/database.php`.
 
-On you host access the `internship.app:8000`. If everything went fine you will see the following screen:
-
-![You have arrived](https://pbs.twimg.com/media/BLYFfmLCAAEHcZL.png)
