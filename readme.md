@@ -1,15 +1,15 @@
 #InternshipDB [Laravel]
 
-##Disclaimer
+##Отказ от ответственности
 
- This project is based on [Laravel](https://github.com/laravel/laravel). 
+ Основой этого проета является [Laravel](https://github.com/laravel/laravel). 
 
-##Recommendations
+##Рекомендация
 
 For the development you are recommended to use [Laravel Homestead](https://github.com/laravel/homestead). 
 >**Homestead** is the Vagrant-Box specially tuned for the efficient Laravel development. 
 >
->Homestead includes:
+>Homestead включает в себя:
 >  * Ubuntu 14.04 LTS
 >  * PHP 5.5
 >  * Ngnix
