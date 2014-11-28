@@ -7,7 +7,7 @@
 ##Рекомендация
 
 For the development you are recommended to use [Laravel Homestead](https://github.com/laravel/homestead). 
->**Homestead** is the Vagrant-Box specially tuned for the efficient Laravel development. 
+>**Homestead** это Vagrant-бокс образ виртуальной машины) специально настроенный для разработки на Laravel. 
 >
 >Homestead включает в себя:
 >  * Ubuntu 14.04 LTS
@@ -15,22 +15,22 @@ For the development you are recommended to use [Laravel Homestead](https://githu
 >  * Ngnix
 >  * MySQL
 >  * Postgres
->  * etc
+>  * и прочее
 
-Before using Homestead you must install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org). 
+Перед использванием Homestead вам следует установить [Vagrant](https://www.vagrantup.com/) и [VirtualBox](https://www.virtualbox.org). 
 
-##Environment setup [Homestead]
-First of all, the Homestead-box must be added to Vagrant. Open your terminal (Windows: [GitBash](http://git-scm.com/download)) and type in:
+##Настройка окружения [Homestead]
+Прежде всего, Homestead-бокс должен быть добавлен в Vagrant. Откройте терминал (Windows: [GitBash](http://git-scm.com/download)) и выполните следующую команду:
 ```
 vagrant box add laravel/homestead
 ```
-This command downloads the Homestead-box from the [VagrantCloud](https://vagrantcloud.com/).
-But if you want to add predownloaded box, then run this command in your terminal:
+Эта комманда скачивать готовый бокс с облачного хранилища [VagrantCloud](https://vagrantcloud.com/).
+Но если вы уже локально располагаете готовым боксом выполните данную комманду, указав новое название и нынешнее расположение б:
 ```
 vagrant box add {init_name} {path/file_name.box} 
 ```
 
-Clone the Homestead configuration from the repository to the project directory.
+Клонируйте конфигурационные файлы Homestead из репозитария в рабочую папку.
 ```
 git clone https://github.com/laravel/homestead.git
 ```
