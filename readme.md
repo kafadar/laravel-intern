@@ -77,7 +77,7 @@ Make some adjustments in the `hosts` file(`C:\Windows\System32\drivers\etc\hosts
 ```
 
 
->If you have added the Homestead-box locally you must open the `homestead/scripts/homestead.rb`file and change the name of box >to be initialised.
+>If you have added the Homestead-box locally you must open the `homestead/scripts/homestead.rb`file and change the name of box to be initialised.
 >```ruby
 >    # Configure The Box
 >    config.vm.box = "laravel/homestead"    <---- change this 
@@ -97,4 +97,19 @@ Here the magic happens. To initialise the virtual_machine just run the following
 ```
 vagrant up
 ```
-It will take some time, but after you can able to access your machine with `vagrant ssh` command. Your web project is now accessible by the following address `internship.app:8000` or `127.0.0.1` (if the `hosts` was not changed). 
+It will take some time, but after you can able to access your machine with `vagrant ssh` command. 
+>To make Laravel able to access MySQL you can create `.env.local.php` file in the root of project with following contents:
+>```php
+>return [
+>	'DB_HOST' => 'localhost',
+>	'DB_NAME' => {database_name},
+>	'DB_USERNAME' => 'homestead',
+>	'DB_PASSWORD' => 'secret'];
+>```
+>Or you can set up database connections in `laravel-intern/app/config/database.php` file.
+
+To initialise the laravel-intern project just run `composer install` command in the root folder on your virtual_machine. Your web project is now accessible by the following address `internship.app:8000` or `127.0.0.1` (if the `hosts` was not changed). 
+
+On you host access the `internship.app:8000`. If everything went fine you will see the following screen:
+
+![You have arrived](https://pbs.twimg.com/media/BLYFfmLCAAEHcZL.png)
